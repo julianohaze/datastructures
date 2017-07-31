@@ -10,12 +10,35 @@ public class Vector {
     private int size = 0;
 
     public void add(Person person) {
-        if (this.size == this.all.length) {
-            this.all = this.copyAndDoubleSize();
-        }
+        doubleSizeIfNecessary();
 
         all[size] = person;
         this.size++;
+    }
+
+    public void add(int index, Person person) {
+        if (index > this.size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (index == this.size) {
+            this.add(person);
+        } else {
+            doubleSizeIfNecessary();
+
+            for (int i = this.size - 1; i >= index; i--) {
+                this.all[i + 1] = this.all[i];
+            }
+
+            this.all[index] = person;
+            this.size++;
+        }
+    }
+
+    private void doubleSizeIfNecessary() {
+        if (this.size == this.all.length) {
+            this.all = this.copyAndDoubleSize();
+        }
     }
 
     private Person[] copyAndDoubleSize() {
@@ -53,7 +76,7 @@ public class Vector {
         for (int i = 0; i < this.size; i++) {
             Person p = all[i];
 
-            if (p.equals(person)){
+            if (p.equals(person)) {
                 return true;
             }
         }

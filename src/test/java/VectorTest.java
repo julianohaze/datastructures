@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
  * Created by julianosilva on 31/07/17.
  */
 public class VectorTest {
+
     @Test
     public void add() throws Exception {
         Person juliano = new Person("Juliano");
@@ -20,10 +21,30 @@ public class VectorTest {
     }
 
     @Test
+    public void shouldAddInSpecificPosition() throws Exception {
+        Person a = new Person("a");
+        Person b = new Person("b");
+        Person c = new Person("c");
+
+        Vector vector = new Vector();
+        vector.add(a);
+        vector.add(b);
+
+        vector.add(1, c);
+
+        assertEquals(3, vector.size());
+
+        Person[] people = vector.toArray();
+        assertEquals(people[0], a);
+        assertEquals(people[1], c);
+        assertEquals(people[2], b);
+    }
+
+    @Test
     public void shouldBeAbleToAddMoreThanTheLimit() {
         Vector vector = new Vector();
         for (int i = 0; i < 300; i++) {
-             vector.add(new Person("Person " + i));
+            vector.add(new Person("Person " + i));
         }
 
         assertEquals(300, vector.size());
