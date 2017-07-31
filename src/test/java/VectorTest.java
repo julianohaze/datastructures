@@ -61,6 +61,18 @@ public class VectorTest {
         vector.get(2);
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getWhenIndexLowerThenZero() {
+        Person a = new Person("a");
+        Person b = new Person("b");
+
+        Vector vector = new Vector();
+        vector.add(a);
+        vector.add(b);
+
+        vector.get(-1);
+    }
+
     @Test
     public void remove() {
         Person a = new Person("a");

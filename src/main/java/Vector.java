@@ -27,10 +27,14 @@ public class Vector {
     }
 
     public Person get(int index) {
-        if (index >= this.size) {
+        if (outOfBounds(index)) {
             throw new IndexOutOfBoundsException();
         }
         return this.all[index];
+    }
+
+    private boolean outOfBounds(int index) {
+        return index < 0 || index >= this.size;
     }
 
     public void remove(int index) {
