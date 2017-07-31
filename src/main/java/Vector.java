@@ -26,9 +26,16 @@ public class Vector {
         return people;
     }
 
+    public Person get(int index) {
+        if (index >= this.size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return this.all[index];
+    }
+
     public void remove(int index) {
-        if (index > this.size) {
-            throw new IllegalArgumentException("Index out of bounds");
+        if (index >= this.size) {
+            throw new IndexOutOfBoundsException();
         }
 
         for (int i = index; i < this.size; i++) {

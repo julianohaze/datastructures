@@ -35,7 +35,34 @@ public class VectorTest {
     }
 
     @Test
-    public void remove() throws Exception {
+    public void get() {
+        Person a = new Person("a");
+        Person b = new Person("b");
+        Person c = new Person("c");
+
+        Vector vector = new Vector();
+        vector.add(a);
+        vector.add(b);
+        vector.add(c);
+
+        Person person = vector.get(2);
+        assertEquals(c, person);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getWhenIndexOutOfBounds() {
+        Person a = new Person("a");
+        Person b = new Person("b");
+
+        Vector vector = new Vector();
+        vector.add(a);
+        vector.add(b);
+
+        vector.get(2);
+    }
+
+    @Test
+    public void remove() {
         Person a = new Person("a");
         Person b = new Person("b");
         Person c = new Person("c");
@@ -53,6 +80,18 @@ public class VectorTest {
 
         assertEquals(a, people[0]);
         assertEquals(c, people[1]);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void removeWhenIndexOutOfBounds() {
+        Person a = new Person("a");
+        Person b = new Person("b");
+
+        Vector vector = new Vector();
+        vector.add(a);
+        vector.add(b);
+
+        vector.remove(2);
     }
 
     @Test
